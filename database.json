@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alice"
+    },
+    {
+      "id": 2,
+      "name": "Bob"
+    }
+  ],
+  "scores": [
+    {
+      "id": 2,
+      "score": 3
+    },
+    {
+      "id": 2,
+      "score": 7
+    },
+    {
+      "id": 1,
+      "score": 2
+    }
+  ]
+}
