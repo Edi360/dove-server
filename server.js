@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express');
 const fs = require('fs');
 const app = express();
@@ -106,6 +107,42 @@ app.post('/newUser', (req, res) => {
     }
     else {
         res.status(401);
+    }
+});
+
+app.post('/editUser', (req, res) => {
+
+    const db = readDatabase();
+    const {n}=req.body;
+
+    if (user==0){res.status(401);}//not logged in
+    else{//logged in
+        for (i in db.users){
+            if (db.users[i].id==user){
+                db.users[i].name=n;
+                res.status(200);
+            }
+        }
+    }
+});
+
+app.post('/login', (req, res) => {
+    if (user>0){console.log("logout before logging into another account")}
+    else{
+        const db = readDatabase();
+        const {n}=req.body;
+
+        let notfound = false;
+
+        for (i in db.users){
+            if (db.users[i].name.localeCompare(n)){
+                user=db.users[i].id;
+                notfound=false;
+                res.status(200);
+            }
+        }
+
+        if (notfound){res.status(401);}
     }
 });
 
